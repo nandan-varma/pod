@@ -4,10 +4,8 @@ import { createClient } from "@/utils/supabase/server";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import { Podcast, PodcastList } from "@/components/Podcast";
-import { useAudioPlayer } from "@/components/AudioPlayerContext";
 import Player from "@/components/Player";
 import { Search } from "@/components/Search";
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default async function ProtectedPage() {
   const supabase = createClient();

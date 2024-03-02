@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { Button } from "@/components/ui/button";
 
 export default function ProtectedPage() {
     // ...
@@ -38,7 +39,7 @@ export default function ProtectedPage() {
             const uploadedFileUrl = data?.path;
             setUploadedUrl(uploadedFileUrl);
         } catch (error) {
-            setUploadError(error.message);
+            setUploadError((error as Error).message);
         } finally {
             setUploading(false);
         }
@@ -48,9 +49,9 @@ export default function ProtectedPage() {
         <div className="animate-in flex-1 flex flex-col gap-20 max-w-4xl px-3">
             {/* create a file upload to get url from supabase storage bucket */}
             <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload} disabled={!file || uploading}>
+            <Button onClick={handleUpload} disabled={!file || uploading}>
                 Upload
-            </button>
+            </Button>
             {uploading && <p>Uploading...</p>}
             {uploadError && <p>Error: {uploadError}</p>}
             {uploadedUrl && <p>Uploaded URL: {uploadedUrl}</p>}
