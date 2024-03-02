@@ -31,7 +31,7 @@ export function Search() {
                 />
                 <Button type="submit"> Search </Button>
             </form>
-            {searching && <SearchResults searchTerm={searchTerm} />}
+            {searching && searchTerm && <SearchResults searchTerm={searchTerm} />}
         </>
     );
 };

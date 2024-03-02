@@ -8,8 +8,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "Podcasts App",
+  description: "A podcast app made with Next.js and Supabase",
 };
 
 export default function RootLayout({
@@ -24,6 +24,19 @@ export default function RootLayout({
           <AudioPlayerProvider>
           {children}
           </AudioPlayerProvider>
+        <footer className="w-full mb-24 border-t border-t-foreground/10 p-8 flex justify-center text-center text-md">
+        <p>
+          made by {" "}
+          <a
+            href="https://github.com/thebrosProj"
+            target="_blank"
+            className="font-bold hover:underline"
+            rel="noreferrer"
+          >
+            TheBrosProj
+          </a>
+        </p>
+      </footer>
         </main>
       </body>
     </html>
