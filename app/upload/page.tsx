@@ -1,8 +1,9 @@
 'use client'
-import { useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 type NewPodcast = {
     name: string;
@@ -40,19 +41,26 @@ const getAudioDurationFromUrl = async (url: string): Promise<number> => {
 
 export default function ProtectedPage() {
     const supabase = createClient();
+    const router = useRouter();
     // const router = useRouter();
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const {
-    //             data: { user },
-    //         } = await supabase.auth.getUser();
+    useEffect(  () => {
 
-    //         if (!user) {
-    //             return router.push("/login");
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
+        (async () => {
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+            
+            if (!user) {
+                return router.push("/login");
+            }
+
+          })();
+        
+          return () => {
+            // this now gets called when the component unmounts
+          };
+
+    }, []);
 
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
