@@ -7,10 +7,6 @@ export function Search() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searching, setSearching] = useState(false);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value);
-    };
-
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(searchTerm);
@@ -31,7 +27,7 @@ export function Search() {
                 />
                 <Button type="submit"> Search </Button>
             </form>
-            {searching && <SearchResults searchTerm={searchTerm} />}
+            {searching && searchTerm != "" && <SearchResults searchTerm={searchTerm} />}
         </>
     );
 };

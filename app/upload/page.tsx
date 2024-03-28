@@ -1,7 +1,8 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
 export default function ProtectedPage() {
     // ...
@@ -11,6 +12,21 @@ export default function ProtectedPage() {
     const [uploading, setUploading] = useState(false);
     const [uploadError, setUploadError] = useState<string | null>(null);
     const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+
+    useEffect(  async () => {
+        async function validateUser(){
+
+            const {
+                data: { user },
+            } = await supabase.auth.getUser();
+            
+            if (!user) {
+                return redirect("/login");
+            }
+        }
+        await validateUser();
+
+    }, []);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
