@@ -9,7 +9,7 @@ import Player from "@/components/Player";
 import { Search } from "@/components/Search";
 
 export default async function ProtectedPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: podcastsData } = await supabase.from("podcasts").select();
   const podcasts = podcastsData as Podcast[];
   // console.log(podcasts);

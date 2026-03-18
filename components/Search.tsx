@@ -27,7 +27,7 @@ export function Search() {
                     placeholder="Search..."
                     value={searchTerm}
                     onChange={(event) => setSearchTerm(event.target.value)}
-                    className="px-4 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-4 py-2 border border-gray-300 text-black rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
                 />
                 <Button type="submit"> Search </Button>
             </form>
